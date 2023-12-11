@@ -2,8 +2,9 @@
 package BSTree;
 
 /**
- * BSTreeNode used by BSTree implementation
- * 
+ * Represents a node in a Binary Search Tree.
+ *
+ * @param <T> The type of data stored in the node.
  * @author Heshan Punchihewa
  * @author Patryk Rusak
  */
