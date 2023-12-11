@@ -18,18 +18,31 @@ public class BSTreeTest {
     public BSTreeTest() {
     }
 
+    private BSTree<Integer> getTestIntTree() {
+        BSTree<Integer> tree = new BSTree<>();
+        tree.add(5);
+        tree.add(3);
+        tree.add(12);
+        tree.add(7);
+        tree.add(18);
+        tree.add(14);
+        tree.add(16);
+        tree.add(20);
+        tree.add(10);
+
+        return tree;
+    }
+
     /**
      * Test of getRoot method, of class BSTree.
      */
     @org.junit.Test
     public void testGetRoot() {
-        System.out.println("getRoot");
-        BSTree instance = new BSTree();
-        BSTreeNode expResult = null;
-        BSTreeNode result = instance.getRoot();
+        BSTree<Integer> instance = new BSTree<>();
+        BSTreeNode<Integer> expResult = null;
+        BSTreeNode<Integer> result = instance.getRoot();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -37,13 +50,11 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testGetHeight() {
-        System.out.println("getHeight");
-        BSTree instance = new BSTree();
+        BSTree<Integer> instance = getTestIntTree();
         int expResult = 0;
         int result = instance.getHeight();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -51,13 +62,11 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testSize() {
-        System.out.println("size");
         BSTree instance = new BSTree();
         int expResult = 0;
         int result = instance.size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -65,13 +74,11 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testIsEmpty() {
-        System.out.println("isEmpty");
         BSTree instance = new BSTree();
         boolean expResult = false;
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -79,11 +86,9 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testClear() {
-        System.out.println("clear");
         BSTree instance = new BSTree();
         instance.clear();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -91,14 +96,12 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testContains() {
-        System.out.println("contains");
         Comparable entry = null;
         BSTree instance = new BSTree();
         boolean expResult = false;
         boolean result = instance.contains(entry);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -106,14 +109,12 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testSearch() {
-        System.out.println("search");
         Comparable entry = null;
         BSTree instance = new BSTree();
         BSTreeNode expResult = null;
         BSTreeNode result = instance.search(entry);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -121,14 +122,12 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testAdd() {
-        System.out.println("add");
         Comparable newEntry = null;
         BSTree instance = new BSTree();
         boolean expResult = false;
         boolean result = instance.add(newEntry);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -136,13 +135,11 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testRemoveMin() {
-        System.out.println("removeMin");
         BSTree instance = new BSTree();
         BSTreeNode expResult = null;
         BSTreeNode result = instance.removeMin();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -150,13 +147,11 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testRemoveMax() {
-        System.out.println("removeMax");
         BSTree instance = new BSTree();
         BSTreeNode expResult = null;
         BSTreeNode result = instance.removeMax();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -164,13 +159,11 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testInorderIterator() {
-        System.out.println("inorderIterator");
         BSTree instance = new BSTree();
         Iterator expResult = null;
         Iterator result = instance.inorderIterator();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -178,13 +171,11 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testPreorderIterator() {
-        System.out.println("preorderIterator");
         BSTree instance = new BSTree();
         Iterator expResult = null;
         Iterator result = instance.preorderIterator();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -192,13 +183,11 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testPostorderIterator() {
-        System.out.println("postorderIterator");
         BSTree instance = new BSTree();
         Iterator expResult = null;
         Iterator result = instance.postorderIterator();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
 }

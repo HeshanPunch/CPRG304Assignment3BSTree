@@ -12,6 +12,15 @@ import BSTree.utilities.BSTreeADT;
 
 public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
 
+    private BSTreeNode<E> root;
+
+    /**
+     * Constructor for BSTree
+     */
+    public BSTree() {
+        this.root = null;
+    }
+
     /**
      * BSTreeNode used by BSTree implementation
      * 
@@ -19,8 +28,8 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
      */
     @Override
     public BSTreeNode<E> getRoot() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRoot'");
+
+        return root;
     }
 
     /**
@@ -31,8 +40,24 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
      */
     @Override
     public int getHeight() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHeight'");
+
+        return recGetHeight(root);
+
+    }
+
+    /**
+     * Recursive method to get the height of the tree
+     * Private method to be used by getHeight()
+     * 
+     * @param node
+     * @return the height of the tree
+     */
+    private int recGetHeight(BSTreeNode<E> node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return 1 + Math.max(recGetHeight(node.getLeft()), recGetHeight(node.getRight()));
+        }
     }
 
     /**
@@ -43,8 +68,24 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
      */
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+
+        return recSize(root);
+
+    }
+
+    /**
+     * Recursive method to get the size of the tree
+     * Private method to be used by size()
+     * 
+     * @param node
+     * @return the size of the tree
+     */
+    private int recSize(BSTreeNode<E> node) {
+        if (node == null) {
+            return 0;
+        } else {
+            return 1 + recSize(node.getLeft()) + recSize(node.getRight());
+        }
     }
 
     /**
@@ -54,8 +95,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
      */
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        return root == null;
     }
 
     /**
@@ -63,8 +103,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
      */
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clear'");
+        root = null;
     }
 
     /**
