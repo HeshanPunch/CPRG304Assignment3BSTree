@@ -31,7 +31,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
     /**
      * BSTreeNode used by BSTree implementation
      *
-     * @param <T>
+     * @return root of the tree
      */
     @Override
     public BSTreeNode<E> getRoot() {
