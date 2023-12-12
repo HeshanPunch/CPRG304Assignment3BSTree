@@ -53,7 +53,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
      * Recursive method to get the height of the tree Private method to be used
      * by getHeight()
      *
-     * @param node
+     * @param node the current node being checked
      * @return the height of the tree
      */
     private int recGetHeight(BSTreeNode<E> node) {
@@ -79,7 +79,7 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
      * Recursive method to get the size of the tree Private method to be used by
      * size()
      *
-     * @param node
+     * @param node the current node being checked
      * @return the size of the tree
      */
     private int recSize(BSTreeNode<E> node) {

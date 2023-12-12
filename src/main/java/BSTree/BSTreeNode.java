@@ -17,7 +17,7 @@ public class BSTreeNode<T> {
     /**
      * Constructor for BSTreeNode
      * 
-     * @param data
+     * @param data value to be stored in this node
      */
     public BSTreeNode(T data) {
         this.data = data;
@@ -28,9 +28,9 @@ public class BSTreeNode<T> {
     /**
      * Constructor for BSTreeNode
      * 
-     * @param data
-     * @param left
-     * @param right
+     * @param data value to be stored in this node
+     * @param left node at left
+     * @param right node at right
      */
     public BSTreeNode(T data, BSTreeNode<T> left, BSTreeNode<T> right) {
         this.data = data;
@@ -41,7 +41,7 @@ public class BSTreeNode<T> {
     /**
      * Getter for data
      * 
-     * @return data
+     * @return data value stored in this node
      */
     public T getData() {
         return data;
@@ -50,7 +50,7 @@ public class BSTreeNode<T> {
     /**
      * Setter for data
      * 
-     * @param data
+     * @param data value or data to be set as data for this node
      */
     public void setData(T data) {
         this.data = data;
@@ -59,7 +59,7 @@ public class BSTreeNode<T> {
     /**
      * Getter for left
      * 
-     * @return left
+     * @return left node at left
      */
     public BSTreeNode<T> getLeft() {
         return left;
@@ -68,7 +68,7 @@ public class BSTreeNode<T> {
     /**
      * Setter for left
      * 
-     * @param left
+     * @param left node to be set as left
      */
     public void setLeft(BSTreeNode<T> left) {
         this.left = left;
@@ -77,7 +77,7 @@ public class BSTreeNode<T> {
     /**
      * Getter for right
      * 
-     * @return right
+     * @return node at right
      */
     public BSTreeNode<T> getRight() {
         return right;
@@ -86,7 +86,7 @@ public class BSTreeNode<T> {
     /**
      * Setter for right
      * 
-     * @param right
+     * @param right node to be set as right
      */
     public void setRight(BSTreeNode<T> right) {
         this.right = right;
