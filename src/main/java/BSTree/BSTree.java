@@ -6,9 +6,11 @@ import java.util.*;
 
 /**
  * Binary Search Tree implementation based on BSTreeADT.
- * Maintains a reference to the root node and provides various operations on the tree.
+ * Maintains a reference to the root node and provides various operations on the
+ * tree.
  *
- * @param <E> the type of elements stored in the tree, must implement Comparable.
+ * @param <E> the type of elements stored in the tree, must implement
+ *            Comparable.
  * @see BSTreeADT
  * 
  * @author Heshan Punchihewa
@@ -107,7 +109,8 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
     }
 
     /**
-     * Checks the current tree to see if the element passed in is stored in the tree.
+     * Checks the current tree to see if the element passed in is stored in the
+     * tree.
      * If the element is found in the tree, the method returns true, and if the
      * element is not in the tree, the method returns false.
      * 
@@ -199,8 +202,8 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
     /**
      * Recursive helper method to add a new node with the specified entry
      * 
-     * @param node      the current node being checked
-     * @param newEntry  the element to add to the tree
+     * @param node     the current node being checked
+     * @param newEntry the element to add to the tree
      * @return the updated node
      */
     private BSTreeNode<E> addNode(BSTreeNode<E> node, E newEntry) {
@@ -230,17 +233,16 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
         if (root == null) {
             return null; // Tree is empty, nothing to remove.
         }
-        // Call a recursive helper method to remove the minimum element
         root = removeMinNode(root);
-        return root; // Placeholder, replace with actual implementation
+        return root;
     }
 
     /**
-    * Recursive helper method to remove the minimum element.
-    *
-    * @param node the current node being checked
-    * @return the updated node
-    */
+     * Recursive helper method to remove the minimum element.
+     *
+     * @param node the current node being checked
+     * @return the updated node
+     */
     private BSTreeNode<E> removeMinNode(BSTreeNode<E> node) {
         if (node.getLeft() == null) {
             return node.getRight();
@@ -267,12 +269,12 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
     }
 
     /**
-    * Recursive helper method to remove the maximum element.
-    *
-    * @param node the current node being checked
-    * @return the updated node
-    */
-    
+     * Recursive helper method to remove the maximum element.
+     *
+     * @param node the current node being checked
+     * @return the updated node
+     */
+
     private BSTreeNode<E> removeMaxNode(BSTreeNode<E> node) {
         if (node.getRight() == null) {
             return node.getLeft();
@@ -305,181 +307,181 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
     }
 
     /**
-    * Generates a post-order iteration over the contents of the tree. Elements are
-    * ordered in such a way that the root element is last.
-    * 
-    * @return an iterator with the elements in a root element last order
-    */
+     * Generates a post-order iteration over the contents of the tree. Elements are
+     * ordered in such a way that the root element is last.
+     * 
+     * @return an iterator with the elements in a root element last order
+     */
     @Override
     public Iterator<E> postorderIterator() {
         return new PostorderIterator(root);
     }
 
     /**
-    * Private inner class for implementing the in-order iterator.
-    */
+     * Private inner class for implementing the in-order iterator.
+     */
     private class InorderIterator implements Iterator<E> {
         private List<E> elements;
         private int index;
 
-    /**
-     * Constructs an in-order iterator for the tree.
-     * 
-     * @param root the root of the tree
-     */
-    public InorderIterator(BSTreeNode<E> root) {
-        elements = new ArrayList<>();
-        inorderTraversal(root);
-        index = 0;
-    }
+        /**
+         * Constructs an in-order iterator for the tree.
+         * 
+         * @param root the root of the tree
+         */
+        public InorderIterator(BSTreeNode<E> root) {
+            elements = new ArrayList<>();
+            inorderTraversal(root);
+            index = 0;
+        }
 
-    /**
-     * Recursive method to perform in-order traversal of the tree.
-     * 
-     * @param node the current node being traversed
-     */
-    private void inorderTraversal(BSTreeNode<E> node) {
-        if (node != null) {
-            inorderTraversal(node.getLeft());
-            elements.add(node.getData());
-            inorderTraversal(node.getRight());
+        /**
+         * Recursive method to perform in-order traversal of the tree.
+         * 
+         * @param node the current node being traversed
+         */
+        private void inorderTraversal(BSTreeNode<E> node) {
+            if (node != null) {
+                inorderTraversal(node.getLeft());
+                elements.add(node.getData());
+                inorderTraversal(node.getRight());
+            }
+        }
+
+        /**
+         * Checks if there are more elements in the iteration.
+         * 
+         * @return true if there are more elements, false otherwise
+         */
+        @Override
+        public boolean hasNext() {
+            return index < elements.size();
+        }
+
+        /**
+         * Retrieves the next element in the iteration.
+         * 
+         * @return the next element
+         * @throws NoSuchElementException if there are no more elements
+         */
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in the iteration");
+            }
+            return elements.get(index++);
         }
     }
 
     /**
-     * Checks if there are more elements in the iteration.
-     * 
-     * @return true if there are more elements, false otherwise
+     * Private inner class for implementing the pre-order iterator.
      */
-    @Override
-    public boolean hasNext() {
-        return index < elements.size();
-    }
-
-    /**
-     * Retrieves the next element in the iteration.
-     * 
-     * @return the next element
-     * @throws NoSuchElementException if there are no more elements
-     */
-    @Override
-    public E next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException("No more elements in the iteration");
-        }
-        return elements.get(index++);
-        }
-    }
-
-    /**
-    * Private inner class for implementing the pre-order iterator.
-    */
     private class PreorderIterator implements Iterator<E> {
         private List<E> elements;
         private int index;
 
-    /**
-     * Constructs a pre-order iterator for the tree.
-     * 
-     * @param root the root of the tree
-     */
-    public PreorderIterator(BSTreeNode<E> root) {
-        elements = new ArrayList<>();
-        preorderTraversal(root);
-        index = 0;
-    }
+        /**
+         * Constructs a pre-order iterator for the tree.
+         * 
+         * @param root the root of the tree
+         */
+        public PreorderIterator(BSTreeNode<E> root) {
+            elements = new ArrayList<>();
+            preorderTraversal(root);
+            index = 0;
+        }
 
-    /**
-     * Recursive method to perform pre-order traversal of the tree.
-     * 
-     * @param node the current node being traversed
-     */
-    private void preorderTraversal(BSTreeNode<E> node) {
-        if (node != null) {
-            elements.add(node.getData());
-            preorderTraversal(node.getLeft());
-            preorderTraversal(node.getRight());
+        /**
+         * Recursive method to perform pre-order traversal of the tree.
+         * 
+         * @param node the current node being traversed
+         */
+        private void preorderTraversal(BSTreeNode<E> node) {
+            if (node != null) {
+                elements.add(node.getData());
+                preorderTraversal(node.getLeft());
+                preorderTraversal(node.getRight());
+            }
+        }
+
+        /**
+         * Checks if there are more elements in the iteration.
+         * 
+         * @return true if there are more elements, false otherwise
+         */
+        @Override
+        public boolean hasNext() {
+            return index < elements.size();
+        }
+
+        /**
+         * Retrieves the next element in the iteration.
+         * 
+         * @return the next element
+         * @throws NoSuchElementException if there are no more elements
+         */
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in the iteration");
+            }
+            return elements.get(index++);
         }
     }
 
     /**
-     * Checks if there are more elements in the iteration.
-     * 
-     * @return true if there are more elements, false otherwise
+     * Private inner class for implementing the post-order iterator.
      */
-    @Override
-    public boolean hasNext() {
-        return index < elements.size();
-    }
-
-    /**
-     * Retrieves the next element in the iteration.
-     * 
-     * @return the next element
-     * @throws NoSuchElementException if there are no more elements
-     */
-    @Override
-    public E next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException("No more elements in the iteration");
-        }
-        return elements.get(index++);
-        }
-    }
-
-    /**
-    * Private inner class for implementing the post-order iterator.
-    */
     private class PostorderIterator implements Iterator<E> {
         private List<E> elements;
         private int index;
 
-    /**
-     * Constructs a post-order iterator for the tree.
-     * 
-     * @param root the root of the tree
-     */
-    public PostorderIterator(BSTreeNode<E> root) {
-        elements = new ArrayList<>();
-        postorderTraversal(root);
-        index = 0;
-    }
-
-    /**
-     * Recursive method to perform post-order traversal of the tree.
-     * 
-     * @param node the current node being traversed
-     */
-    private void postorderTraversal(BSTreeNode<E> node) {
-        if (node != null) {
-            postorderTraversal(node.getLeft());
-            postorderTraversal(node.getRight());
-            elements.add(node.getData());
+        /**
+         * Constructs a post-order iterator for the tree.
+         * 
+         * @param root the root of the tree
+         */
+        public PostorderIterator(BSTreeNode<E> root) {
+            elements = new ArrayList<>();
+            postorderTraversal(root);
+            index = 0;
         }
-    }
 
-    /**
-     * Checks if there are more elements in the iteration.
-     * 
-     * @return true if there are more elements, false otherwise
-     */
-    @Override
-    public boolean hasNext() {
-        return index < elements.size();
-    }
-
-    /**
-     * Retrieves the next element in the iteration.
-     * 
-     * @return the next element
-     * @throws NoSuchElementException if there are no more elements
-     */
-    @Override
-    public E next() {
-        if (!hasNext()) {
-            throw new NoSuchElementException("No more elements in the iteration");
+        /**
+         * Recursive method to perform post-order traversal of the tree.
+         * 
+         * @param node the current node being traversed
+         */
+        private void postorderTraversal(BSTreeNode<E> node) {
+            if (node != null) {
+                postorderTraversal(node.getLeft());
+                postorderTraversal(node.getRight());
+                elements.add(node.getData());
+            }
         }
-        return elements.get(index++);
+
+        /**
+         * Checks if there are more elements in the iteration.
+         * 
+         * @return true if there are more elements, false otherwise
+         */
+        @Override
+        public boolean hasNext() {
+            return index < elements.size();
+        }
+
+        /**
+         * Retrieves the next element in the iteration.
+         * 
+         * @return the next element
+         * @throws NoSuchElementException if there are no more elements
+         */
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in the iteration");
+            }
+            return elements.get(index++);
         }
     }
 }

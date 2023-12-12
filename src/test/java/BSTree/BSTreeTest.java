@@ -18,21 +18,6 @@ public class BSTreeTest {
     public BSTreeTest() {
     }
 
-    private BSTree<Integer> getTestIntTree() {
-        BSTree<Integer> tree = new BSTree<>();
-        tree.add(5);
-        tree.add(3);
-        tree.add(12);
-        tree.add(7);
-        tree.add(18);
-        tree.add(14);
-        tree.add(16);
-        tree.add(20);
-        tree.add(10);
-
-        return tree;
-    }
-
     /**
      * Test of getRoot method, of class BSTree.
      */
@@ -42,7 +27,12 @@ public class BSTreeTest {
         BSTreeNode<Integer> expResult = null;
         BSTreeNode<Integer> result = instance.getRoot();
         assertEquals(expResult, result);
-
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+        instance.add(1);
+        result = instance.getRoot();
+        assertEquals(3, result.getData().intValue());
     }
 
     /**
@@ -50,11 +40,16 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testGetHeight() {
-        BSTree<Integer> instance = getTestIntTree();
+        BSTree<Integer> instance = new BSTree<>();
         int expResult = 0;
         int result = instance.getHeight();
         assertEquals(expResult, result);
-
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+        instance.add(1);
+        result = instance.getHeight();
+        assertEquals(3, result);
     }
 
     /**
@@ -62,11 +57,18 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testSize() {
-        BSTree instance = new BSTree();
+        BSTree<Integer> instance = new BSTree<>();
+
         int expResult = 0;
         int result = instance.size();
         assertEquals(expResult, result);
 
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+        instance.add(1);
+        result = instance.size();
+        assertEquals(4, result);
     }
 
     /**
@@ -74,9 +76,15 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testIsEmpty() {
-        BSTree instance = new BSTree();
-        boolean expResult = false;
+        BSTree<Integer> instance = new BSTree<>();
+
+        boolean expResult = true;
         boolean result = instance.isEmpty();
+        assertEquals(expResult, result);
+
+        instance.add(3);
+        expResult = false;
+        result = instance.isEmpty();
         assertEquals(expResult, result);
 
     }
@@ -86,8 +94,15 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testClear() {
-        BSTree instance = new BSTree();
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+
         instance.clear();
+        assertEquals(0, instance.size());
+        assertEquals(null, instance.getRoot());
+        assertEquals(0, instance.getHeight());
 
     }
 
@@ -96,10 +111,17 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testContains() {
-        Comparable entry = null;
-        BSTree instance = new BSTree();
-        boolean expResult = false;
-        boolean result = instance.contains(entry);
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+
+        boolean expResult = true;
+        boolean result = instance.contains(3);
+        assertEquals(expResult, result);
+
+        expResult = false;
+        result = instance.contains(1);
         assertEquals(expResult, result);
 
     }
@@ -109,12 +131,18 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testSearch() {
-        Comparable entry = null;
-        BSTree instance = new BSTree();
-        BSTreeNode expResult = null;
-        BSTreeNode result = instance.search(entry);
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+
+        BSTreeNode<Integer> expResult = null;
+        BSTreeNode<Integer> result = instance.search(1);
         assertEquals(expResult, result);
 
+        expResult = new BSTreeNode<>(3);
+        result = instance.search(3);
+        assertEquals(expResult.getData(), result.getData());
     }
 
     /**
@@ -122,11 +150,15 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testAdd() {
-        Comparable newEntry = null;
-        BSTree instance = new BSTree();
-        boolean expResult = false;
-        boolean result = instance.add(newEntry);
-        assertEquals(expResult, result);
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        assertEquals(3, instance.getRoot().getData().intValue());
+
+        instance.add(2);
+        instance.add(12);
+
+        assertEquals(3, instance.size());
+        assertEquals(2, instance.getHeight());
 
     }
 
@@ -135,10 +167,14 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testRemoveMin() {
-        BSTree instance = new BSTree();
-        BSTreeNode expResult = null;
-        BSTreeNode result = instance.removeMin();
-        assertEquals(expResult, result);
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+        instance.add(1);
+        BSTreeNode<Integer> expResult = new BSTreeNode<>(1);
+        BSTreeNode<Integer> result = instance.removeMin();
+        assertEquals(expResult.getData(), result.getData());
 
     }
 
@@ -147,10 +183,14 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testRemoveMax() {
-        BSTree instance = new BSTree();
-        BSTreeNode expResult = null;
-        BSTreeNode result = instance.removeMax();
-        assertEquals(expResult, result);
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+        instance.add(1);
+        BSTreeNode<Integer> expResult = new BSTreeNode<>(12);
+        BSTreeNode<Integer> result = instance.removeMax();
+        assertEquals(expResult.getData(), result.getData());
 
     }
 
@@ -159,9 +199,13 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testInorderIterator() {
-        BSTree instance = new BSTree();
-        Iterator expResult = null;
-        Iterator result = instance.inorderIterator();
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+        instance.add(1);
+        Iterator<Integer> expResult = null;
+        Iterator<Integer> result = instance.inorderIterator();
         assertEquals(expResult, result);
 
     }
@@ -171,11 +215,14 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testPreorderIterator() {
-        BSTree instance = new BSTree();
-        Iterator expResult = null;
-        Iterator result = instance.preorderIterator();
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+        instance.add(1);
+        Iterator<Integer> expResult = null;
+        Iterator<Integer> result = instance.preorderIterator();
         assertEquals(expResult, result);
-
     }
 
     /**
@@ -183,9 +230,14 @@ public class BSTreeTest {
      */
     @org.junit.Test
     public void testPostorderIterator() {
-        BSTree instance = new BSTree();
-        Iterator expResult = null;
-        Iterator result = instance.postorderIterator();
+        BSTree<Integer> instance = new BSTree<>();
+        instance.add(3);
+        instance.add(2);
+        instance.add(12);
+        instance.add(1);
+
+        Iterator<Integer> expResult = null;
+        Iterator<Integer> result = instance.postorderIterator();
         assertEquals(expResult, result);
 
     }
