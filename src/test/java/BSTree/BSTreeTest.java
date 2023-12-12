@@ -200,13 +200,19 @@ public class BSTreeTest {
     @org.junit.Test
     public void testInorderIterator() {
         BSTree<Integer> instance = new BSTree<>();
+        Iterator<Integer> iterator = instance.inorderIterator();
+
         instance.add(3);
         instance.add(2);
         instance.add(12);
         instance.add(1);
-        Iterator<Integer> expResult = null;
-        Iterator<Integer> result = instance.inorderIterator();
-        assertEquals(expResult, result);
+
+        int[] expectedOrder = { 1, 2, 3, 12 };
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(expectedOrder[i], iterator.next().intValue());
+            i++;
+        }
 
     }
 
@@ -216,13 +222,19 @@ public class BSTreeTest {
     @org.junit.Test
     public void testPreorderIterator() {
         BSTree<Integer> instance = new BSTree<>();
+        Iterator<Integer> iterator = instance.preorderIterator();
+
         instance.add(3);
         instance.add(2);
         instance.add(12);
         instance.add(1);
-        Iterator<Integer> expResult = null;
-        Iterator<Integer> result = instance.preorderIterator();
-        assertEquals(expResult, result);
+
+        int[] expectedOrder = { 3, 2, 1, 12 };
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(expectedOrder[i], iterator.next().intValue());
+            i++;
+        }
     }
 
     /**
@@ -231,14 +243,19 @@ public class BSTreeTest {
     @org.junit.Test
     public void testPostorderIterator() {
         BSTree<Integer> instance = new BSTree<>();
+        Iterator<Integer> iterator = instance.postorderIterator();
+
         instance.add(3);
         instance.add(2);
         instance.add(12);
         instance.add(1);
 
-        Iterator<Integer> expResult = null;
-        Iterator<Integer> result = instance.postorderIterator();
-        assertEquals(expResult, result);
+        int[] expectedOrder = { 1, 2, 12, 3 };
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(expectedOrder[i], iterator.next().intValue());
+            i++;
+        }
 
     }
 
